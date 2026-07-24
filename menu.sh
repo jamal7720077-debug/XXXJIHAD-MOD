@@ -2,8 +2,8 @@
 
 C_RESET=$'\033[0m'
 # deSEC.io Configuration
-DESEC_TOKEN="izFZM5NbmqRzrZX1Hd6vmTv5Mg7F"
-DESEC_DOMAIN="02iuk.shop"
+DESEC_TOKEN="tM87d4yr8ZGHDgRKSmpap8MNo3H1"
+DESEC_DOMAIN="uk2.shop"
 C_BOLD=$'\033[1m'
 C_DIM=$'\033[2m'
 C_UL=$'\033[4m'
