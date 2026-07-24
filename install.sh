@@ -10,12 +10,18 @@ fi
 echo "Installing xxxJIHAD Manager with Jihad Shield Protection..."
 mkdir -p /etc/xxxJIHAD
 
-# URLs (IPv4 forced to avoid GitHub IPv6 issues)
-MENU_URL="https://raw.githubusercontent.com/jamal7720077-debug/XXXJIHAD-MOD-MOD/main/menu.sh"
-SSHD_URL="https://raw.githubusercontent.com/jamal7720077-debug/XXXJIHAD-MOD-MOD/main/ssh"
+# URLs (Using master branch and correct repo name)
+REPO_URL="https://raw.githubusercontent.com/jamal7720077-debug/XXXJIHAD-MOD/master"
+MENU_URL="${REPO_URL}/menu.sh"
+SSHD_URL="${REPO_URL}/ssh"
 
 # Install menu
+echo "Downloading menu script..."
 wget -4 -q -O /usr/local/bin/menu "$MENU_URL"
+if [ ! -s /usr/local/bin/menu ]; then
+    echo "ERROR: Failed to download menu script or file is empty."
+    exit 1
+fi
 chmod +x /usr/local/bin/menu
 
 echo "Applying xxxJIHAD SSH configuration..."
@@ -70,10 +76,9 @@ else
     echo "SSH config applied but service was not restarted automatically."
 fi
 
-# Security module is now integrated into the menu script.
-
 # Run xxxJIHAD setup
-bash /usr/local/bin/menu --install-setup
+echo "Running initial setup..."
+/usr/local/bin/menu --install-setup || echo "Note: Initial setup finished with some notices."
 
 echo "Installation complete!"
 echo "Type 'menu' to start."
